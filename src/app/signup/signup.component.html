@@ -1,0 +1,91 @@
+<div class="container">
+  <h1 align="center"><b>Register Form</b></h1>
+  <hr>
+  <font color="red">&nbsp;&nbsp;*Please Fill Up All The Fields For SignUp</font>
+  <br>
+  <br>
+  <form [formGroup]="signupemp" (ngSubmit)="onSubmitForm()">
+    <div class="container">
+        <label>Notification:-</label>
+        <div class="form-group">
+          <input type="radio" formControlName="emp_notification" value="email">Email&nbsp;&nbsp;
+          <input type="radio" formControlName="emp_notification" value="phone">Phone
+        </div>
+
+      <label>Email_Id:-</label>
+      <div class="form-group"><input class="form-control" type="email" placeholder="Email id"
+          formControlName="emp_email">
+        <label *ngIf="signupemp.get('emp_email').hasError('required') && !signupemp.get('emp_email').pristine"
+          style="color:red">Email is Required</label>
+
+        <label *ngIf="signupemp.get('emp_email').hasError('email') && !signupemp.get('emp_email').pristine"
+          style="color:red">Email is Invalid</label>
+      </div>
+      <div formGroupName="email_group">
+        <label>Password:-</label>
+        <div class="form-group"><input class="form-control" type="password" placeholder="Password"
+            formControlName="emp_pass"></div>
+
+            <label style="color:red" *ngIf="signupemp.get('email_group').get('emp_pass').hasError('required') && !signupemp.get('email_group').get('emp_pass').pristine">Password is Required</label>
+            <br>
+        <label>Confirm Password:-</label>
+        <div class="form-group">
+          <input class="form-control" type="password" placeholder="Confirm Password" formControlName="emp_cnfmpass">
+
+          <label style="color:red" *ngIf="signupemp.get('email_group').hasError('matchingpass')">Password doesn't Match</label>
+
+        </div>
+      </div>
+      <label>Full_Name:-</label>
+      <div class="form-group"><input class="form-control" type="text" placeholder="Full_name"
+          formControlName="emp_name">
+        <label *ngIf="signupemp.get('emp_name').hasError('required') && !signupemp.get('emp_name').pristine"
+          style="color:red">Name is Required</label>
+
+        <label *ngIf="signupemp.get('emp_name').hasError('invalidName') && !signupemp.get('emp_name').pristine"
+          style="color:red">Name is Invalid</label>
+      </div>
+
+      <label>Mobile:-</label>
+      <div class="form-group"><input class="form-control" type="number" placeholder="Mobile"
+          formControlName="emp_mobile">
+          <label *ngIf="signupemp.get('emp_mobile').hasError('required') && !signupemp.get('emp_mobile').pristine"
+          style="color:red">Mobile is Required</label>
+        </div>
+
+      <label>Gender:-</label>
+      <div class="form-group">
+        <input type="radio" formControlName="emp_gender" value="male">Male&nbsp;&nbsp;
+        <input type="radio" formControlName="emp_gender" value="female">Female
+      </div>
+
+      <label>City:-</label>
+      <div class="form-group">
+        <select formControlName="emp_city" class="form-control">
+          <option value="ahmedabad">
+            ahmedabad
+          </option>
+          <option value="baroda">
+            baroda
+          </option>
+          <option value="ahmedabad">
+            surat
+          </option>
+        </select>
+      </div>
+      <label>Pincode:-</label>
+      <div class="form-group"><input class="form-control" type="number" placeholder="Pincode"
+          formControlName="emp_pincode"> </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary form-control">SIGN UP</button>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-danger form-control" (click)="onBack()">CANCEL</button>
+        </div>
+      </div>
+    </div>
+  </form>
