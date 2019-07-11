@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { Customer } from '../login/customer';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { CheckEmail } from '../utility/checkEmail';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupemp=new FormGroup({
-      emp_email:new FormControl(null,Validators.required),
+      emp_email:new FormControl(null,[Validators.required,Validators.email],CheckEmail.emailcheck(this._data)),
       emp_name:new FormControl(null,[Validators.required,this.NameValid.bind(this)]),
       email_group:new FormGroup({
         emp_pass:new FormControl(null,Validators.required),

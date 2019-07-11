@@ -18,8 +18,13 @@
         <label *ngIf="signupemp.get('emp_email').hasError('required') && !signupemp.get('emp_email').pristine"
           style="color:red">Email is Required</label>
 
+
         <label *ngIf="signupemp.get('emp_email').hasError('email') && !signupemp.get('emp_email').pristine"
           style="color:red">Email is Invalid</label>
+
+          <label style="color:blue" *ngIf="signupemp.get('emp_email').status=='PENDING'">Checking...</label>
+          <label style="color:green" *ngIf="signupemp.get('emp_email').status=='VALID'">Email is Available</label>
+          <label style="color:red" *ngIf="signupemp.get('emp_email').hasError('invalidEmail')">Email is already Taken</label>
       </div>
       <div formGroupName="email_group">
         <label>Password:-</label>
